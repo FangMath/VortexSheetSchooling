@@ -9,6 +9,7 @@ tau=real(wing(ib).tangential*conj(wing(ib).dzetabody));
 
 for j=1:M+1
     mu(j)=real(wing(ib).tangential*(bt(ib,j)+Rt(ib,j)+conj(FreeVelocity)));
+
     
     % 2nd order BDF (1st order when tk==2)
     if (tk==2) %| tk-input_tk<2
@@ -35,15 +36,19 @@ integratep=-(pi*integratep/M+2*dotgammaMax);
 integratepS=-pi*integratepS/M;
 
 
+
 %% calculate net force
 wing(ib).integratepS=integratepS;
 wing(ib).integrateP=integratep;
 wing(ib).les=-pi*wing(ib).nu(M+1)^2/8;
 wing(ib).skin = .5*Para.skin*skindrag(wing(ib),mu,tau); % .5*Para.skin is the real coefficient...
 %wing(ib).skin = Para.skin*power(abs(wing(ib).dotcx),1.5);
+wing(ib).spring = -Para.spring*wing(ib).cy; 
+
 
 thrust=wing(ib).integrateP*real(wing(ib).normal)+wing(ib).les*real(wing(ib).tangential);
 skin_thrust = wing(ib).skin*real(wing(ib).tangential);
+
 
 lift=wing(ib).integrateP*imag(wing(ib).normal)+wing(ib).les*imag(wing(ib).tangential);
 skin_lift = wing(ib).skin*imag(wing(ib).tangential);
@@ -60,8 +65,9 @@ if ib == 2
     Para.exforce(tk) = 0; % add external force
     thrust = thrust + Para.exforce(tk);
 end
+wing(ib).hydrolift = lift + skin_lift;
 wing(ib).thrust=thrust + skin_thrust;
-wing(ib).lift=lift + skin_lift;
+wing(ib).lift= wing(ib).hydrolift + wing(ib).spring;
 wing(ib).torque=torque + skin_torque;
 
 end

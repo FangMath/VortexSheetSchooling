@@ -14,20 +14,21 @@ Para.I=10;           % fish moment of inertia
 Para.g=0;            % gravity
 
 %****** vary skin friction *%
-Para.skin = 2*0.06;      % skin friction coefficient
+Para.skin = 2*0.02;      % skin friction coefficient
 %2*[0.01, 0.02, 0.06, 0.1]
 %*********************** 
 %***** heaving amplitude
-Para.HAmp(1) = 1;       
-Para.HAmp(2) = Para.HAmp(1);  % same fish
+Para.HAmp(1) = .2;       
+Para.HAmp(2) = 0;  % same fish
 %*********************** 
 %***** fish iniV *******
-Para.FishV(1) = -57; 
+Para.FishV(1) = -13.25; 
 Para.FishV(2) = Para.FishV(1); 
 % amp = [.1, .15, .2, .25, .3];
 % C_f=0.02: 5.7; 12.7; 23.04; 35.86; 50.01
 % C_f=0.03: 4.15; 8.33; 15; 24.02; 34.32
 % C_f=0.04: 3.44; 6.35; 11.16; 17.83; 25.92
+% Para.skin = 2*0.02; Para.HAmp(1) = 0.2; (good parameters)
 
 %% single wing velocity
 % C_f=0.02:    7.22;   14.77;   25.4;    38.28;    52.6
@@ -37,8 +38,11 @@ Para.FishV(2) = Para.FishV(1);
 %***** initial schooling number
 Para.iniSch = 1;
 % background flow
-Para.iniV=0;
-Para.numV=0; % # of period to decay
+Para.iniV=3;
+Para.numV=3; % # of period to decay
+
+%------------------ add spring constant ---------------------
+Para.spring = 1;
 
 %-------------------------------------------------------------------------
 %% fish movement
@@ -72,5 +76,5 @@ Para.farR(1) = Para.farR(2)+Para.dx;
 
 %%%%%%%%%%% same fish %%%%%%%%%%%%%%%%
 %Para.dir = ['../data_twowing_schooling/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin), 'sch', num2str(Para.iniSch)];
-Para.dir = ['../joel_test/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin),'sch3'];
+Para.dir = ['../joel_test/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin),'sch1'];
 end

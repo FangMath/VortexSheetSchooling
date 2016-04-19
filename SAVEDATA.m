@@ -4,13 +4,18 @@ global Wing wing Para
 %% --record the solutions
 for ib=1:Para.Nw
     Wing(ib).Cx(tk) = wing(ib).cx;
+    Wing(ib).Cy(tk) = wing(ib).cy;
     Wing(ib).dotCx(tk) = wing(ib).dotcx;
+    Wing(ib).dotCy(tk) = wing(ib).dotcy;
     Wing(ib).L(tk) = wing(ib).L;
     Wing(ib).dotL(tk) = wing(ib).dotL;
 
     Wing(ib).IntegrateP(tk)=wing(ib).integrateP;
     Wing(ib).Skin(tk)=wing(ib).skin;
     Wing(ib).Les(tk)=wing(ib).les;
+
+    Wing(ib).Spring(tk)=wing(ib).spring;
+    Wing(ib).Hydrolift(tk)=wing(ib).hydrolift;
 
     Wing(ib).Thrust(tk)=wing(ib).thrust;
     Wing(ib).Lift(tk)=wing(ib).lift;

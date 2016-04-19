@@ -26,7 +26,8 @@ if tk<4
 else
     for ib = 1:Nw
         wing(ib).cx = wing_p1(ib).cx + 1.5*Para.dt*wing_p1(ib).dotcx - 0.5*Para.dt*wing_p2(ib).dotcx;
-        wing(ib).cy = wing_p1(ib).cy(1);
+        wing(ib).cy = wing_p1(ib).cy + 1.5*Para.dt*wing_p1(ib).dotcy - 0.5*Para.dt*wing_p2(ib).dotcy;
+        %wing(ib).cy = wing_p1(ib).cy(1);
         wing(ib).omega = wing_p1(ib).omega(1);
         
         %%% wing1 and wing2 are separate bodies
@@ -41,7 +42,7 @@ else
 end
 
 % Set initial guess for broyden's method
-X=zeros(2,M+2);
+X=zeros(2,M+4);
 if tk==2
     for ib=1:Nw
         X(ib,1:M+1)=0;
@@ -52,6 +53,8 @@ if tk==2
     X((M+2)*Nw+2)=wing(1).dotcx;
     X((M+2)*Nw+3)=wing(2).cx;
     X((M+2)*Nw+4)=wing(2).dotcx;
+    X((M+2)*Nw+5)=wing(2).cy;
+    X((M+2)*Nw+6)=wing(2).dotcy;
     %         X((M+2)*Nw+5)=wing(1).omega;
     %         X((M+2)*Nw+6)=wing(1).domega;
 else if tk==3
@@ -64,6 +67,8 @@ else if tk==3
         X((M+2)*Nw+2)=wing(1).dotcx;
         X((M+2)*Nw+3)=wing(2).cx;
         X((M+2)*Nw+4)=wing(2).dotcx;
+        X((M+2)*Nw+5)=wing(2).cy;
+        X((M+2)*Nw+6)=wing(2).dotcy;
     else
         X(ib,1:M+1) = 3*wing_p1(ib).nu - 3*wing_p2(ib).nu + wing_p3(ib).nu;
         X(ib,M+2)   = 3*wing_p1(ib).gammaMax - 3*wing_p2(ib).gammaMax + wing_p3(ib).gammaMax;
@@ -72,10 +77,12 @@ else if tk==3
         X((M+2)*Nw+2)=wing(1).dotcx;
         X((M+2)*Nw+3)=wing(2).cx;
         X((M+2)*Nw+4)=wing(2).dotcx;
+        X((M+2)*Nw+5)=wing(2).cy;
+        X((M+2)*Nw+6)=wing(2).dotcy;
     end
 end
 
 a = X((M+2)*Nw+2)
 % implicit solver
-broyden(X,@f,(M+2)*Nw+4,1e-10);
+broyden(X,@f,(M+2)*Nw+6,1e-10);
 end

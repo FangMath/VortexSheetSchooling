@@ -74,6 +74,9 @@ if tk == 1
     wing(ib).skin=0;
     wing(ib).les=0;
 
+    wing(ib).spring=0;
+    wing(ib).hydrolift=0;
+
     wing(ib).thrust=0;
     wing(ib).lift=0;
     wing(ib).torque=0;

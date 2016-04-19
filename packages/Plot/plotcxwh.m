@@ -59,26 +59,22 @@ end
 ASchV = [0,diff(ASch)];
 ASchA = [0,diff(ASchV)];
 
-sch1idx = [25:50];
-sch1idx = [floor(ed/100)-1:floor(ed/100)];
-A = [ASchA(sch1idx)',ASchV(sch1idx)', ASch(sch1idx)'];
-klb = A\ones(length(sch1idx),1)
-school1 = 1/klb(3)
-%
-%sch2idx = [100:130];
-%A = [ASchA(sch2idx)',ASchV(sch2idx)', ASch(sch2idx)'];
-%klb = A\ones(length(sch2idx),1)
-%school2 = 1/klb(3)
-%
-%sch3idx = [170:200];
-%A = [ASchA(sch3idx)',ASchV(sch3idx)', ASch(sch3idx)'];
-%klb = A\ones(length(sch3idx),1)
-%school3 = 1/klb(3)
+%sch1idx = [25:50];
+%sch1idx = [floor(ed/100)-1:floor(ed/100)];
+%A = [ASchA(sch1idx)',ASchV(sch1idx)', ASch(sch1idx)'];
+%klb = A\ones(length(sch1idx),1)
+%school1 = 1/klb(3)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ifplot = 1;
 if ifplot
+f11 = figure(11);
+plot(T, -Wing(1).Cy(idx),'b.-');hold on
+plot(T, -Wing(2).Cy(idx),'r.-');hold on
+%plot([T(1),T(end)], 13.24*[1,1], 'k--');
+ff
+
 %%%%% wing velocity %%%%%%
 f1 = figure(1);
 plotset(3.5,3);

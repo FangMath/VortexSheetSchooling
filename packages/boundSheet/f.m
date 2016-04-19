@@ -14,11 +14,14 @@ wing(1).cx = x((M+2)*Nw+1);
 wing(1).dotcx = x((M+2)*Nw+2);
 wing(2).cx=x((M+2)*Nw+3);
 wing(2).dotcx=x((M+2)*Nw+4);
+wing(2).cy=x((M+2)*Nw+5);
+wing(2).dotcy=x((M+2)*Nw+6);
 % omega=x((M+2)*Nw+5);
 % domega=x((M+2)*Nw+6);
 
 %% get the updated wing location info
 wing = FLATPOSITION(wing, Para, tk);
+
 
 for ib = 1:Nw
     % add the trailing edge in free sheet
@@ -88,6 +91,10 @@ result((M+2)*Nw+2)=wing(1).dotcx-wing_p1(1).dotcx-Para.dt/(2*Para.Mass)*(wing(1)
 result((M+2)*Nw+3)=wing(2).cx-wing_p1(2).cx-Para.dt/2*(wing(2).dotcx+wing_p1(2).dotcx);
 
 result((M+2)*Nw+4)=wing(2).dotcx-wing_p1(2).dotcx-Para.dt/(2*Para.Mass)*(wing(2).thrust+wing_p1(2).thrust);
+
+result((M+2)*Nw+5)=wing(2).cy-wing_p1(2).cy-Para.dt/2*(wing(2).dotcy+wing_p1(2).dotcy);
+
+result((M+2)*Nw+6)=wing(2).dotcy-wing_p1(2).dotcy-Para.dt/(2*Para.Mass)*(wing(2).lift + wing_p1(2).lift);
 
 %%%
 %result((M+2)*Nw+1)=wing(1).cx-Wing(1).Cx(tk-1)-Para.dt/2*(wing(1).dotcx+Wing(1).dotCx(tk-1));

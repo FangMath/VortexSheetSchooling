@@ -34,4 +34,6 @@ chebyshevF=real(chebyshevF(1:M+1));
 chebyshevF=chebyshevF/M;
 chebyshevF([1,M+1])=.5*chebyshevF([1,M+1]);
 
+
+
 end
