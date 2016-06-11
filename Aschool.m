@@ -121,6 +121,3 @@ end
 
 TimeTotal = toc(Ttotal)
 end
-
-% global variables
-
