@@ -74,7 +74,7 @@ Para.farR(2) = -2*Para.FishV(2)+2;
 %Para.farR(2) = 18;
 Para.farR(1) = Para.farR(2)+Para.dx;
 
-%%%%%%%%%%% same fish %%%%%%%%%%%%%%%%
-%Para.dir = ['../data_twowing_schooling/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin), 'sch', num2str(Para.iniSch)];
-Para.dir = ['../joel_test/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin),'sch1'];
+%%%%%%%%%%% directory of data files %%%%%%%%%%%%%%%%
+Para.dir = ['../data_twowing_schooling/amp', num2str(Para.HAmp(1)), 'skin', num2str(Para.skin), 'sch', num2str(Para.iniSch)];
+
 end
